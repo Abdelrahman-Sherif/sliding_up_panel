@@ -456,6 +456,9 @@ class _SlidingUpPanelState extends State<SlidingUpPanel>
       onPointerDown: (PointerDownEvent p) =>
           _vt.addPosition(p.timeStamp, p.position),
       onPointerMove: (PointerMoveEvent p) {
+        if (p.delta.dy > 0 && p.delta.dy < 15) {
+          return;
+        }
         _vt.addPosition(p.timeStamp,
             p.position); // add current position for velocity tracking
         _onGestureSlide(p.delta.dy);
